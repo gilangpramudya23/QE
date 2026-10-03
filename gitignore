@@ -1,0 +1,7 @@
+# Never commit data or secrets
+*.xlsx
+*.xls
+*.csv
+.streamlit/secrets.toml
+__pycache__/
+.ipynb_checkpoints/
