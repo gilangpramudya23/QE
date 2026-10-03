@@ -122,6 +122,13 @@ def get_secret_key() -> str:
         return ""
 
 
+def ai_settings():
+    """(api_key, model) from the sidebar boxes, falling back to Secrets / default model."""
+    key = (st.session_state.get("openai_key") or "").strip() or get_secret_key()
+    model = (st.session_state.get("openai_model") or "").strip() or "gpt-4o-mini"
+    return key, model
+
+
 # ----------------------------------------------------------------------------
 # SIDEBAR: data upload -> validation
 # ----------------------------------------------------------------------------
@@ -193,7 +200,7 @@ with st.sidebar:
     st.button("↺ Reset filters", on_click=reset_filters, use_container_width=True)
 
     st.header("🤖 AI settings")
-    model = st.text_input("GPT model", value="gpt-4o-mini")
+    st.text_input("GPT model", value="gpt-4o-mini", key="openai_model")
     if st.button("🗑️ Clear chat", use_container_width=True):
         st.session_state["messages"] = []
 
@@ -309,6 +316,7 @@ typed = st.chat_input("Ask a follow-up, e.g. 'Which branch should we review firs
 prompt = "Interpret the current dashboard results: key findings, risks, and what to check next." if quick else typed
 
 if prompt:
+    api_key, model = ai_settings()
     if not api_key:
         st.error("Enter your OpenAI API key in the sidebar first.")
         st.stop()
