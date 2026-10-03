@@ -247,7 +247,7 @@ with tab_chart:
         fig1 = px.bar(g, x=dim, y="Contracts", color=split, barmode="stack",
                       category_orders={dim: order}, title=f"Contracts by {dim} (coloured by {split})")
     else:
-        long = g.melt(id_vars=dim, value_vars=["Good", "Bad"], var_name=TARGET, value_name="Contracts")
+        long = g[[dim, "Good", "Bad"]].melt(id_vars=dim, var_name=TARGET, value_name="Contracts")
         fig1 = px.bar(long, x=dim, y="Contracts", color=TARGET, barmode="stack", color_discrete_map=COLORS,
                       category_orders={dim: order, TARGET: ["Good", "Bad"]}, title=f"Contracts by {dim}: Good vs Bad")
     fig1.update_layout(xaxis_tickangle=-40, legend_title_text="")
