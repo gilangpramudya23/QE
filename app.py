@@ -193,7 +193,6 @@ with st.sidebar:
     st.button("↺ Reset filters", on_click=reset_filters, use_container_width=True)
 
     st.header("🤖 AI settings")
-    api_key = st.text_input("OpenAI API key", type="password", value=get_secret_key(), placeholder="sk-...")
     model = st.text_input("GPT model", value="gpt-4o-mini")
     if st.button("🗑️ Clear chat", use_container_width=True):
         st.session_state["messages"] = []
