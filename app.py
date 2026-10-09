@@ -10,7 +10,7 @@ import streamlit as st
 # ----------------------------------------------------------------------------
 st.set_page_config(page_title="Credit Quality Dashboard", page_icon="📊", layout="wide")
 
-MAX_TABLE_ROWS = 2000  # rows rendered in the records table (download always has everything)
+MAX_TABLE_ROWS = 2000
 DROP_COLS = ["Kontrak (migrate)", "Credit Analyst", "Expert 2", "Decision", "Decision.1"]
 TARGET = "GOOD BAD"
 DIMS = ["Area Credit 2021", "Branch", "LOB", "Is Override", "Score", "Kel DP", "Angke > 30"]
